@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para Jazz</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700&family=Pacifico&display=swap" rel="stylesheet">
+<style>
+body{margin:0; min-height:100vh; background:#ffd6e3; display:flex; align-items:center; justify-content:center; font-family:'Nunito',sans-serif; padding:20px}
+.wrap{text-align:center; width:100%; max-width:500px}
+h1{font-family:'Pacifico',cursive; color:#e60012; font-size:2.3rem; margin:0 0 5px 0; text-shadow:2px 2px 0 #fff}
+p.info{color:#8a3a52; margin:0 0 20px 0; font-weight:700}
+.envelope{position:relative; width:100%; height:380px; margin:auto; cursor:pointer}
+.flap{position:absolute; left:5%; top:10%; width:90%; height:50%; background:#ffb6cc; border:3px solid #000; border-radius:16px 16px 0 0; clip-path: polygon(0 0, 100% 0, 50% 60%); z-index:3; transition:0.5s}
+.body{position:absolute; left:5%; top:10%; width:90%; height:70%; background:white; border:3px solid #000; border-radius:16px; box-shadow:7px 7px 0 #000; z-index:2; display:flex; align-items:center; justify-content:center; transition:0.5s}
+.bow{position:absolute; left:50%; top:42%; transform:translate(-50%,-50%); font-size:40px; z-index:4; transition:0.5s}
+.letter{position:absolute; left:6%; top:12%; width:88%; height:82%; background:#fff8f9; border:3px solid #000; border-radius:16px; padding:18px; box-shadow:7px 7px 0 #000; z-index:1; opacity:0; transform:translateY(30px); transition:0.6s; text-align:left}
+.inner{border:2px dashed #ff8fab; border-radius:12px; padding:14px; height:100%; box-sizing:border-box; display:flex; flex-direction:column}
+.head{display:flex; gap:10px; align-items:center; margin-bottom:10px; font-family:'Pacifico',cursive; color:#d81b60; font-size:1.2rem}
+#texto{font-size:1.1rem; line-height:1.6; color:#4a1f2d; font-weight:700; white-space:pre-wrap; flex:1}
+.envelope.open.flap{transform:rotateX(180deg); opacity:0}
+.envelope.open.body{transform:translateY(150px); opacity:0}
+.envelope.open.bow{opacity:0}
+.envelope.open.letter{opacity:1; transform:translateY(0); z-index:10}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Para Jazz 🎀</h1>
+  <p class="info">Toca el sobre 💌</p>
+  <div class="envelope" id="env">
+    <div class="flap"></div>
+    <div class="body"><span style="font-family:'Pacifico'; color:#8a3a52">Para Jazz 💖</span></div>
+    <div class="bow">🎀</div>
+    <div class="letter">
+      <div class="inner">
+        <div class="head">🐱 Para ti, Jazz</div>
+        <div id="texto"></div>
+        <div style="text-align:right; font-family:'Pacifico'; color:#ff5a8a; margin-top:10px; font-size:1.3rem"><3</div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+const env = document.getElementById('env');
+const textoEl = document.getElementById('texto');
+const mensaje = "Jazz gracias por entenderme, tenerme paciencia creeme que eso es muy importante para mi te quiero muchote porque se que eres una gran mujer que merece todo lo bonito de este mundo y solo me queda agradecer de tenerte. <3";
+let abierto = false;
+env.onclick = function(){
+  if(abierto) return;
+  abierto = true;
+  env.classList.add('open');
+  textoEl.textContent = "";
+  let i = 0;
+  let interval = setInterval(function(){
+    textoEl.textContent += mensaje[i];
+    i++;
+    if(i >= mensaje.length) clearInterval(interval);
+  }, 25);
+};
+</script>
+</body>
+</html>
